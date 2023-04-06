@@ -1,4 +1,4 @@
-# Technologies
+# Tutorials
 
 Repo to handle submitting & updating tutorials on lablab.ai
 
