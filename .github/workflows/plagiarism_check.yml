@@ -1,0 +1,43 @@
+name: Plagiarism Check
+
+on:
+  pull_request:
+    paths:
+      - '**.mdx'
+
+jobs:
+  plagiarism_check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+          pip install actions-toolkit
+
+      - name: Extract changed files, with .mdx extension
+        id: changed-files
+        uses: jitterbit/get-changed-files@v1
+        with:
+          format: json
+
+      - name: Check plagiarism
+        run: |
+          python .github/scripts/plagiarism_check.py
+        env:
+          CHANGED_FILES: ${{ steps.changed-files.outputs.added_modified }}
+          REMOVED_FILES: ${{ steps.changed-files.outputs.removed }}
+          COPYLEAKS_API_KEY: ${{ secrets.COPYLEAKS_API_KEY }}
+          COPYLEAKS_EMAIL: ${{ secrets.COPYLEAKS_EMAIL }}
+          INTERNAL_API_KEY: ${{ secrets.INTERNAL_API_KEY }}
+          PLAGIARISM_UPDATE_URL: ${{ secrets.PLAGIARISM_UPDATE_URL }}
+          PLAGIARISM_THRESHOLD: ${{ secrets.PLAGIARISM_THRESHOLD }}
