@@ -1,18 +1,18 @@
 ---
 title: "AI21 Labs Tutorial: how to create a contextual answers app"
-description: "How to create a contextual answer app with AI21 Labs API and Flask"
+description: "A deep dive AI tutorial on how to create a contextual answer app with AI21 Labs API and Flask"
 image: ""
 authorUsername: "pawellasica"
 ---
 
 ## What is AI21 Studio?
-AI21 Studio is a powerful and versatile platform designed to help developers harness the capabilities of cutting-edge language models, specifically Jurassic-2, to build a wide range of AI-driven applications. With its user-friendly API and specialized endpoints, AI21 Studio enables developers to easily tackle various natural language processing tasks, such as text generation, summarization, paraphrasing, and more. The platform offers customizable solutions, allowing users to fine-tune their own models to suit their specific requirements. In this tutorial, we will explore the key features of AI21 Studio, learn how to get started with its API, and see a real-world example of its applications.
+[AI21 Studio](https://www.ai21.com/studio) is a powerful and versatile platform designed to help developers harness the capabilities of cutting-edge language models, specifically Jurassic-2, to build a wide range of AI-driven applications. With its user-friendly API and specialized endpoints, AI21 Studio enables developers to easily tackle various natural language processing tasks, such as text generation, summarization, paraphrasing, and more. The platform offers customizable solutions, allowing users to fine-tune their own models to suit their specific requirements. In this tutorial, we will explore the key features of AI21 Studio, learn how to get started with its API, and see a real-world example of its applications.
 
 ## Where to start? 
 Firstly you need to create an account and sign up for a free trial. Find more information [here](https://studio.ai21.com/sign-up).
-Then you should familiarise yourself with AI21 Studio, if you don't have any prior expierence with it. You will find the models, tools, APIs and their [documentation](https://docs.ai21.com/docs/overview) and [API Reference](https://docs.ai21.com/reference/j2-complete-api-ref) useful. After some reading and playing around with the models obtain your API key [here](https://studio.ai21.com/account). You will need it to access the API from your code.
+Then you should familiarise yourself with AI21 Studio, if you don't have any prior expierence with it. You will find the models, tools, APIs and their [AI documentation](https://docs.ai21.com/docs/overview) and [API Reference](https://docs.ai21.com/reference/j2-complete-api-ref) useful. After some reading and playing around with the models obtain your [API key](https://studio.ai21.com/account). You will need it to access the API from your code.
 
-## Contextual API
+### Contextual API
 
 The [Contextual Answers API](https://docs.ai21.com/reference/contextual-answers-api-ref) is a powerful system designed to provide accurate and reliable question answering based on specific document context. This API ensures that answers are derived solely from the provided context, avoiding any factual issues that may arise when using traditional language models. If the answer to a question is not present in the document, the model will indicate this instead of providing a potentially inaccurate answer.
 
@@ -44,7 +44,7 @@ JSON
 }
 ```
 
-## Setting up the project
+### Setting up the project
 
 Firstly install **Flask**, a light-weight backend framework with the help of Pythons PIP.
 You can do it using this command
@@ -52,7 +52,7 @@ You can do it using this command
 ```code
 pip install flask
 ```
-You can also install [Postman](https://www.postman.com/downloads/). Postman is a application that helps developers build, test, and manage APIs (Application Programming Interfaces). It provides a user-friendly interface for designing API requests, setting parameters, headers, and authentication. 
+You can also install [Postman](https://www.postman.com/downloads/). Postman is an application that helps developers build, test, and manage APIs (Application Programming Interfaces). It provides a user-friendly interface for designing API requests, setting parameters, headers, and authentication. 
 
 Create a python file and name it app.py.
 Fill it with this minimal boilkerplate code to get started.
@@ -70,7 +70,7 @@ def def get_answer(methods=['GET']):
 app.run()
 ```
 
-## Implementing the API 
+### Implementing the API 
 
 Now that we have set up the bare bones of our project, let's modify it to use the AI21 API.
 
@@ -145,7 +145,7 @@ def get_answer():
 
 app.run()
 ```
-## Testing in Postman
+### Testing in Postman
 Open postman and run your app. You can run your app with the following command
 ```python
 flask --app app run
@@ -163,4 +163,10 @@ And these are the results
 ```
 
 ## Summary
-This tutorial covered creating a basic Flask web API and providing contextual anserws based on the AI21 Contextual Answers API. This example could be further improved with creating a frontend. For that check out our other AI21  [tutorial](https://lablab.ai/t/ai21-labs-tutorial-how-to-create-a-text-improver-app)
+This tutorial covered creating a basic Flask web API and providing contextual anserws based on the AI21 Contextual Answers API. This example could be further improved with creating a frontend. For that check out our other AI21 [tutorial](https://lablab.ai/t/ai21-labs-tutorial-how-to-create-a-text-improver-app).
+
+And if you want to test in real world you skills working with AI21 studio, you can join our upcoming AI21 lab [AI Hackathon](https://lablab.ai/event/ai21-labs-hackathon-2) and building an amazing tool during this 7 days event.
+
+What are you waiting for?
+
+Join the AI revolution and with lablab.ai's community create better future!
