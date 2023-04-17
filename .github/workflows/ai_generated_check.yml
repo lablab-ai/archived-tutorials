@@ -1,4 +1,4 @@
-name: Plagiarism Check
+name: AI Generated Content Check
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
       - '**.mdx'
 
 jobs:
-  plagiarism_check:
+  ai_generated_check:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,14 +32,11 @@ jobs:
         with:
           format: json
 
-      - name: Check plagiarism
+      - name: Check AI Generated Content
         run: |
-          python .github/scripts/plagiarism_check.py
+          python .github/scripts/ai_generated_check.py
         env:
           CHANGED_FILES: ${{ steps.changed-files.outputs.added_modified }}
           REMOVED_FILES: ${{ steps.changed-files.outputs.removed }}
           COPYLEAKS_API_KEY: ${{ secrets.COPYLEAKS_API_KEY }}
           COPYLEAKS_EMAIL: ${{ secrets.COPYLEAKS_EMAIL }}
-          INTERNAL_API_KEY: ${{ secrets.INTERNAL_API_KEY }}
-          PLAGIARISM_UPDATE_URL: ${{ secrets.PLAGIARISM_UPDATE_URL }}
-          PLAGIARISM_THRESHOLD: ${{ secrets.PLAGIARISM_THRESHOLD }}
