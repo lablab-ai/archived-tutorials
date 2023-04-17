@@ -1,0 +1,94 @@
+---
+title: "Feed ChatGPT your own Documents with LangChain"
+description: "How to upload any file, of any size, to ChatGPT then query anything about it without needing to retrain the model"
+authorUsername: "aziz_amari161"
+---
+
+## Introduction
+In this tutorial, we will be working with text files,
+but keep in mind that this can be expanded to any other file format such as PDFs. 
+Most of the time your documents are really long, you can't just put them all in a prompt.
+The applications for this are endless, being able to provide ChatGPT with 
+data it doesn't know (like your personal documents, notes, etc) without needing to 
+retrain the model since we will be using a vector database to simulate having memory.
+## What is LangChain?
+It's a powerful framework for developing applications powered by language models and it allows 
+the models to have access to many tools and APIs like searching the web and sending emails. Here is a
+[List of supported tools](https://python.langchain.com/en/latest/modules/agents/tools.html), you can also define your custom ones.
+## Coding
+This tutorial assumes basic Python knowledge, you can follow along 
+by writing the code in a Colab notebook or in your favorite editor.
+
+**Getting the OpenAI API Key:**
+Go to [OpenAI](https://openai.com/) and copy/save your API Key or generate a new one.
+
+**Installing needed libraries:**
+```code
+!pip install langchain
+!pip install openai
+!pip install tiktoken
+!pip install faiss-cpu
+```
+
+**Providing your API key:**
+```code
+import os
+os.environ["OPENAI_API_KEY"] = "paste yours here"
+```
+
+**Reading a text file:**
+For the sake of this tutorial I created a dummy file containing information about ancient emperor Marcus Aurelius
+```code
+text_file=open('marcus.txt','r')
+raw_text=text_file.read()
+```
+We will use CharacterTextSplitter from langchain to split our document into smaller chunks so we don't pass the token limit
+```code
+from langchain.text_splitter import CharacterTextSplitter
+splitter = CharacterTextSplitter(        
+    separator = "\n",
+    chunk_size = 800,
+    chunk_overlap  = 200,
+    length_function = len,
+)
+chunks = splitter.split_text(raw_text)
+```
+
+**Getting the embeddings from OpenAI:**
+Vector embedding in NLP is representing words or phrases as vectors for machine learning models to understand their relationships.
+```code
+from langchain.embeddings.openai import OpenAIEmbeddings
+embeddings = OpenAIEmbeddings()
+```
+
+**Vector Database:**
+We used Faiss but you can experiement with using other options like Weaviate, Pinecone, Milvus, etc
+```code
+from langchain.vectorstores import FAISS
+docsearch = FAISS.from_texts(texts, embeddings)
+```
+
+**Creating the chain:**
+Now we are ready to test the result, basically before passing a query to chatgpt we browse through our database (memory) to look for the most similar text 
+and feed it to the LLM along the query.
+
+```code
+from langchain.chains.question_answering import load_qa_chain
+from langchain.llms import OpenAI
+chain = load_qa_chain(OpenAI(), chain_type="stuff")
+```
+
+```code
+query = "What did Marcus complain about in his letters to Fronto?"
+docs = docsearch.similarity_search(query)
+chain.run(input_documents=docs, question=query)
+```
+
+Result: "Marcus complained about his tutors, his secretarial duties, and court life in general."
+
+## Conclusion
+Congratulations! You have now learned how to effectively feed your documents to ChatGPT using LangChain. Remember to experiment with different prompts and input files, and don't be afraid to try out new ideas.
+
+
+
+
