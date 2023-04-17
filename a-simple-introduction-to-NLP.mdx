@@ -1,0 +1,66 @@
+# Introduction
+Natural Language Processing (NLP) is a subfield of Artificial Intelligence (AI) that focuses on the interaction between computers and humans using natural language. NLP enables machines to understand and interpret human language, which is essential for building conversational interfaces, chatbots, and other language-based applications. In this tutorial, we will explore the basics of NLP using Python, including tokenization, stemming, lemmatization, and named entity recognition. We will also introduce two popular NLP libraries: NLTK and spaCy.
+# Installing Libraries
+Before we can begin working with NLP, we need to install two Python libraries: NLTK and spaCy. NLTK is a popular open-source library for NLP that provides various functionalities, including tokenization, stemming, lemmatization, and more. spaCy, on the other hand, is a more recent NLP library that is designed for high-performance, production-ready NLP applications.
+
+To install NLTK, you can use the following command in your terminal:
+
+`pip install nltk`
+
+To install spaCy, use the following command:
+
+`pip install spacy`
+
+Once you have installed these libraries, we can start exploring the various NLP functionalities they provide.
+# Tokenization
+Tokenization is the process of splitting text into individual tokens or words. In NLTK, we can use the word_tokenize() function to tokenize text:
+`import nltk
+
+text = "Tokenization is the process of splitting text into individual tokens or words."
+tokens = nltk.word_tokenize(text)
+
+print(tokens)
+`
+The output of this code will be a list of tokens:
+
+['Tokenization', 'is', 'the', 'process', 'of', 'splitting', 'text', 'into', 'individual', 'tokens', 'or', 'words', '.']
+
+In spaCy, we can use the nlp() function to tokenize text:
+`import spacy
+
+nlp = spacy.load("en_core_web_sm")
+
+text = "Tokenization is the process of splitting text into individual tokens or words."
+doc = nlp(text)
+
+for token in doc:
+    print(token.text)
+`
+The output of this code will be the same list of tokens.
+
+# Stemming and Lemmatization
+Stemming and lemmatization are techniques used to reduce words to their base or root form. Stemming removes the suffixes from words to obtain the base form, while lemmatization uses a dictionary to obtain the base form.
+
+In NLTK, we can use the PorterStemmer algorithm to stem words:
+
+`
+from nltk.stem import PorterStemmer
+
+stemmer = PorterStemmer()
+
+words = ["running", "runner", "runs"]
+for word in words:
+    print(stemmer.stem(word))
+
+`
+The output of this code will be the stem of each word:
+
+run run run
+
+In NLTK, we can use the WordNetLemmatizer algorithm to lemmatize words:
+`
+from nltk.stem import WordNetLemmatizer
+
+lemmatizer = Word
+
+`
