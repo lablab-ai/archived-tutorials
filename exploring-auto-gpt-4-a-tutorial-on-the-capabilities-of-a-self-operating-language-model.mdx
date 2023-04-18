@@ -1,0 +1,99 @@
+---
+title: "exploring-auto-gpt-4-a-tutorial-on-the-capabilities-of-a-self-operating-language-model"
+description: "Auto-GPT is an open-source application that demonstrates the advanced capabilities of the GPT-4 language model. It utilizes LLM "thoughts" to achieve a set goal autonomously. As a pioneering example of GPT-4 running fully autonomously, Auto-GPT expands the limits of AI possibilities."
+image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjxlv6WDmJhbm3Jz589OF4TXfWaXwOuMN_WQ&usqp=CAU"
+authorUsername: "youknowsthevibes"
+---
+
+## 🚀 Features
+
+- 🌐 Internet access for searches and information gathering
+- 💾 Long-Term and Short-Term memory management
+- 🧠 GPT-4 instances for text generation
+- 🔗 Access to popular websites and platforms
+- 🗃️ File storage and summarization with GPT-3.5
+
+## 📋 Requirements
+
+- Environment (pick one)
+  - [VSCode + devcontainer](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers): It has been configured in the .devcontainer folder and can be used directly
+  - Docker
+  - Python 3.10 or later (instructions: [for Windows](https://www.tutorialspoint.com/how-to-install-python-in-windows))
+- [OpenAI API key](https://platform.openai.com/account/api-keys)
+
+### Optional
+- Memory backend (pick one)
+  - [Pinecone](https://www.pinecone.io/)
+  - [Milvus](https://milvus.io/)
+  - [Redis](https://redis.io)
+  - [Weaviate](https://weaviate.io)
+- ElevenLabs Key (If you want the AI to speak)
+
+## ⚠️ OpenAI API Keys Configuration ⚠️ 
+
+Obtain your OpenAI API key from: https://platform.openai.com/account/api-keys.
+
+To use OpenAI API key for Auto-GPT, you **NEED** to have billing set up (AKA paid account).
+
+You can set up paid account at https://platform.openai.com/account/billing/overview.
+
+![For OpenAI API key to work, set up paid account at OpenAI API > Billing](./docs/imgs/openai-api-key-billing-paid-account.png)
+
+#### **PLEASE ENSURE YOU HAVE DONE THIS STEP BEFORE PROCEEDING, OTHERWISE NOTHING WILL WORK!**
+
+## 💾 Installation
+
+To install Auto-GPT, follow these steps:
+
+1. Make sure you have all the **requirements** listed above, if not, install/get them
+
+_To execute the following commands, open a CMD, Bash, or Powershell window by navigating to a folder on your computer and typing `CMD` in the folder path at the top, then press enter._
+
+2. Clone the repository: For this step, you need Git installed. Alternatively,
+   you can download the [latest stable release](https://github.com/Significant-Gravitas/Auto-GPT/releases/latest) (`Source code (zip)`, bottom of the page).
+
+    ```bash
+    git clone https://github.com/Significant-Gravitas/Auto-GPT.git
+    ```
+
+3. Navigate to the directory where the repository was downloaded
+
+    ```bash
+    cd Auto-GPT
+    ```
+
+4. Install the required dependencies
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+5. Configure Auto-GPT
+   1. Locate the file named `.env.template` in the main `/Auto-GPT` folder.
+   2. Create a copy of this file, called `.env` by removing the `template` extension.  The easiest way is to do this in a command prompt/terminal window `cp .env.template .env`.
+   3. Open the `.env` file in a text editor.  _Note: Files starting with a dot might be hidden by your Operating System._
+   4. Find the line that says `OPENAI_API_KEY=`.
+   5. After the `"="`, enter your unique OpenAI API Key (without any quotes or spaces).
+   6. Enter any other API keys or Tokens for services you would like to utilize.
+   7. Save and close the `.env` file.
+
+   By completing these steps, you have properly configured the API Keys for your project.
+   
+   ## 🔧 Usage
+
+1. Run `autogpt` Python module in your terminal.
+  On linux or mac:
+    ```bash
+    # On Linux of Mac:
+   ./run.sh start
+   # On Windows:
+   ./run.bat start
+   ```
+   Running with `--help` after `start` lists all the possible command line arguments you can pass.
+
+2. After each action, choose from options to authorize command(s),
+exit the program, or provide feedback to the AI.
+   1. Authorize a single command, enter `y`
+   2. Authorize a series of _N_ continuous commands, enter `y -N`
+   3. Exit the program, enter `n`
+
