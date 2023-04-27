@@ -1,7 +1,7 @@
 ---
 title: "Auto-GPT tutorial: How to set up Auto-GPT"
 description: "A step by step guide on how to set up Auto-GPT in your computer"
-image: ""
+image: "https://imagedelivery.net/K11gkZF3xaVyYzFESMdWIQ/8acde362-3352-46b8-5307-073ece9a3200/full"
 authorUsername: "EmmanuelIriarte"
 ---
 
@@ -25,7 +25,7 @@ To set up Auto-GPT in your computer you will need the latest version of python �
 
 ### 1. Go to GitHub.
 Go to the GitHub repository where you can find [Auto-GPT source code](https://github.com/Significant-Gravitas/Auto-GPT/tree/v0.2.2) 🌐 and copy the repository URL 📋
-<Img src="https://res.cloudinary.com/dw9e8s3ic/image/upload/v1682585100/Auto-GPT%20tutprial/Screenshot_2023-04-26_at_12.22.53_f6xesh.png"/>
+<Img src="https://imagedelivery.net/K11gkZF3xaVyYzFESMdWIQ/8d42cf8c-2bd5-49d9-0873-fe64d2885200/full" alt="github screenshot"/>
 
 ### 2. Clone the repository.	
 Open the terminal of your computer 💻, navigate to where you would like to clone the repository and execute the following command:
@@ -46,28 +46,28 @@ pip install -r requirements.txt
 For Auto-GPT to work it needs access to GPT-4 (GPT-3.5 can also work but will return less favorable results and has a higher tendency to hallucinate), to configure the settings for Auto-GPT you need to set it up with your own API key 🔑, if you don’t have one you can get it from [Open AI´s website] 🌐 (https://platform.openai.com/account/api-keys) For this you will need to create a new account (if you don´t have one already) and click “Create new secret key” 🔐
  
 You can then give a name to your key, something like Auto-GPT and click create 🆕
-<Img src="https://res.cloudinary.com/dw9e8s3ic/image/upload/v1682585101/Auto-GPT%20tutprial/Screenshot_2023-04-26_at_13.03.58_aaonms.png"/>
+<Img src="https://imagedelivery.net/K11gkZF3xaVyYzFESMdWIQ/30f977de-808f-4163-3937-2f53f64f0500/full"/>
 
 Remember to keep your key safely stored since you won’t be able to see it after this (you can always create a new one and change it in the configurations file)🤫
-<Img src="https://res.cloudinary.com/dw9e8s3ic/image/upload/v1682585100/Auto-GPT%20tutprial/Screenshot_2023-04-26_at_13.09.29_kockdy.png"/>
+<Img src="https://imagedelivery.net/K11gkZF3xaVyYzFESMdWIQ/636052e5-f5a9-4d43-38eb-44db9a7b2100/full"/>
 
 To give Auto-GPT access to your API key you will need to open the file under the name .env.template in the directory where you clone the repository, there you will need to replace “your-api-openai-key” by your actual API key 🔑
-<Img src="https://res.cloudinary.com/dw9e8s3ic/image/upload/v1682585100/Auto-GPT%20tutprial/Screenshot_2023-04-26_at_13.34.07_sxxxxj.png"/>
+<Img src="https://imagedelivery.net/K11gkZF3xaVyYzFESMdWIQ/611d7e36-cbe9-4e33-7c2b-96bc86d98c00/full"/>
 
 ### 5. Give memory to your agent.
 It is also possible to give your Auto-GPT memory for the LLM (Large language model) to be able to retrieve information. You can do this using different vector databases (such as Redis, Weaviate, Milvus and Pinecone) but for simplicity in this tutorial we will use Pinecone. 🌲
 For this next step you will need to go to [Pinecone website] (https://app.pinecone.io/) 🌐  and set a free account (unfortunately at the moment due to high demand there is a waiting list on the Starter plan) once the account has been made. You will have to go to “API keys”, then “Create API key” 🔑
-<Img src="https://res.cloudinary.com/dw9e8s3ic/image/upload/v1682585101/Auto-GPT%20tutprial/Screenshot_2023-04-26_at_14.22.06_pdtbk1.png"/>
+<Img src="https://imagedelivery.net/K11gkZF3xaVyYzFESMdWIQ/5845b86f-b50e-4190-4bbe-39d48d488b00/full"/>
 
 Now, you can give your API key a name, something like “autogpt” might be a good fit. 🆒
 
 Once you have all this set up, you need to give Auto-GPT access to these keys. 🔓
 In the same file where you set up Open AI’s API key you will need to replace “your-pinecone-api-key” (a) and “your-pinecone-region” (b) you can obtain this information from the API key you just created in Pinecone. 🤔
-<Img src="https://res.cloudinary.com/dw9e8s3ic/image/upload/v1682585101/Auto-GPT%20tutprial/Screenshot_2023-04-26_at_14.43.20_hhardd.png"/>
+<Img src="https://imagedelivery.net/K11gkZF3xaVyYzFESMdWIQ/5a4d0360-9b84-48e3-154f-6dec87df3400/full"/>
 
 ### 6. Replace the values in yout .env.template file
 Copy the key and environment and replace the values in the following lines 
-<Img src="https://res.cloudinary.com/dw9e8s3ic/image/upload/v1682585100/Auto-GPT%20tutprial/Screenshot_2023-04-26_at_14.35.16_e2wntf.png"/>
+<Img src="https://imagedelivery.net/K11gkZF3xaVyYzFESMdWIQ/0d8f2228-7e24-403b-8c94-802f9bb5e600/full"/>
 
 ### 7. Rename your .env file.
 Once you have finished the configuration remember to rename the file .env.template to .env 🔄
