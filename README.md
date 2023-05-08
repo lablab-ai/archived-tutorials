@@ -1,3 +1,7 @@
+# ARCHIVED!!
+
+## Please use https://github.com/lablab-ai/community-content  to add content
+
 # Tutorials
 
 Repo to handle submitting & updating tutorials on lablab.ai
