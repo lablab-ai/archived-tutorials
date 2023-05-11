@@ -1,0 +1,218 @@
+---
+title: "ChatGPT API Tutorial: How to Build a Chatbot with the ChatGPT API"
+description: "Learn how to build a Telegram Chatbot using ChatGPT API and Python Telegram Bot API"
+image: "./images/image_0.png"
+authorUsername: "abdibrokhim"
+---
+
+## What is ChatGPT?
+ChatGPT is an advanced language model that has been trained on a massive amount of human-generated text data, which enables it to generate text that is similar in style and content to human conversation. This means that it can provide responses to questions, offer suggestions, or provide information in a conversational manner that is often indistinguishable from responses provided by humans.
+
+For more information about ChatGPT [click me](https://lablab.ai/tech/openai/chatgpt).
+
+## What will we do?
+
+<Img src="./images/image_1.png" alt="AI generated art by Midjourney" caption="AI generated art by Midjourney"/>
+
+In this tutorial we will build a Telegram Chatbot. We will use ChatGPT API and Python Telegram Bot API.
+
+For more information about ChatGPT API [click me](https://platform.openai.com/docs/guides/chat/chat-vs-completions).
+
+For more information about Python Telegram Bot API [click me](https://core.telegram.org/api#bot-api).
+
+
+### Prerequisites
+
+Go to [Botfather](https://t.me/BotFather) and send command /newbot to create a new bot. Give it a name (ex. My Cool Chatbot) and username (ex. mycoolchatbot), and copy/save your API Key.
+
+Go to [OpenAI](https://openai.com/) and copy/save your API Key or generate a new one.
+
+Cool!
+
+You are good to go. 
+
+### Setting up the project
+
+Firstly, create working directory:
+
+```code
+mkdir chatbot
+cd chatbot
+```
+
+Create python vertual environment and activate it:
+
+```code 
+python -m venv env
+source env/bin/activate
+```
+
+Now, create a file named bot.py. We will use this file to implement logic of our Cool Chatbot.
+
+```code
+touch bot.py
+```
+
+### Environment variables
+
+Create .env file and store your ChatGPT API Key, Telegram Bot API Key:
+    
+```code
+CHATGPT_API_KEY=<paste-your-chatgpt-api-key>
+TELEGRAM_BOT_TOKEN=<paste-your-telegram-bot-api-key>
+```
+
+### Installing and Importing libraries
+
+Install libraries:
+
+```code
+pip install python-telegram-bot --upgrade
+pip install python-dotenv
+pip install openai
+```
+
+Import libraries in the beginning of the bot.py:
+
+```python
+from telegram import (
+   Update,
+)
+from telegram.ext import (
+   Application,
+   CommandHandler,
+   ContextTypes,
+   filters,
+)
+
+import os
+from dotenv import load_dotenv
+
+import openai
+```
+
+### Load Environment variables
+
+Call environment variables from .env, if there is something missed raise Error message:
+
+```python
+load_dotenv()
+
+CHATGPT_API_KEY=os.getenv("CHATGPT_API_KEY")
+TELEGRAM_BOT_TOKEN=os.getenv("TELEGRAM_BOT_TOKEN")
+
+if not CHATGPT_API_KEY or TELEGRAM_BOT_TOKEN:
+   raise ValueError("CHATGPT_API_KEY or TELEGRAM_BOT_TOKEN is missed!")
+```
+
+### Chatbot
+
+Let’s implement our Chatbot from scratch:
+
+```python
+def main() -> None:
+   load_dotenv()
+
+   application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
+
+   application.add_handler(CommandHandler("start", start))
+   application.add_handler(CommandHandler("chat", chat))
+   application.add_handler(CommandHandler("help", help))
+
+   print('cooking…')
+
+   application.run_polling()
+
+
+if __name__ == "__main__":
+   main()
+```
+
+### Implementing /start command
+
+It is initial command which will be triggered when user starts chatting with Chatbot:
+
+```python
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+   text = """
+  
+   Hello! I'm ChatGPT powered Chatbot.
+   I can chat with you and answer your questions.
+
+   ex. Explain quantum computing in simple terms.
+  
+   """
+
+
+   await update.message.reply_text(text=text)
+```
+
+### Implementing /help command
+
+It is responsible for helping user to understand how properly use Chatbot:
+
+```python
+async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+   await update.message.reply_text(text="Type /chat and enter your message right after")
+```
+
+### Implementing /chat command
+
+It is responsible for chatting user with Chatbot:
+
+```python
+async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+   prompt = update.message.text.split("/chat", 1)[1]
+
+   response = execute(prompt)
+
+   await update.message.reply_text(text=response)
+```
+
+### Finally, implement function which will trigger OpenAI’s ChatGPT API and generates text based on prompt:
+
+```python
+openai.api_key = CHATGPT_API_KEY
+
+def execute(prompt: str) -> str:
+
+   response = openai.ChatCompletion.create(
+       model="gpt-3.5-turbo",
+       messages=[
+            {"role": "assistant", "content": "You are helpful Assistant"},
+            {"role": "user", "content": prompt}
+       ]
+   )
+
+   return response['choices'][0]['message']['content']
+```
+
+### Testing
+
+Let’s test our just Cooked Chatbot. Simply run the following command:
+
+```code
+python bot.py
+```
+
+Open Telegram and search for your bot. Send /start command to your bot. Now, you can chat with your bot.
+
+Let's try to ask something:
+/chat Explain quantum computing in simple terms.
+
+
+## Summary
+
+In this tutorial, we have learned how to build a Telegram Chatbot using ChatGPT API and Python Telegram Bot API. 
+
+Cool!
+
+What’s next?
+
+<Img src="./images/image_2.png" alt="AI generated art by Midjourney" caption="AI generated art by Midjourney"/>
+
+Dive into hackathons [click me](https://lablab.ai/event).
+
+Thanks for reading this tutorial. 
+
+made with 💜 by [abdibrokhim](https://linkedin.com/in/abdibrokhim) for [lablab.ai tutorials](https://lablab.ai/t).
